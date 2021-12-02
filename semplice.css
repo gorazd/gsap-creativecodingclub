@@ -1,0 +1,169 @@
+:root {
+  --primary: rgb(255, 222, 36);
+  --secondary: rgb(41, 42, 43);
+  --terciary: rgb(0, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--secondary);
+
+  font-family: 'Oswald', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.6em;
+}
+
+main {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y:visible;
+}
+
+.logo-icon {
+  width: 3em;
+  height: 3em;
+}
+
+/* HEADER */
+
+.header-fixed {
+  background-color: var(--primary);
+}
+
+.header-fixed .wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-fixed .wrapper > div {
+  flex-basis: 50%;
+}
+
+.header-fixed .wrapper > div:first-of-type {
+  border-right: 1px solid black;
+}
+
+.header-fixed .wrapper > div:first-of-type > h2 {
+  max-width: 50%;
+  font-size: 2.8rem;
+  line-height: .8;
+}
+
+.header-fixed .wrapper > div:nth-child(2) {
+  margin-left: auto;
+}
+
+.header-fixed .wrapper > div:nth-child(2) > h3 {
+  max-width: 50%;
+  margin: 0 auto;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.header-fixed .wrapper h2 ,
+.header-fixed .wrapper h3 {
+  margin: 0;
+}
+
+/* NAVIGATION */
+
+.header-navigation {
+  min-height: 150px;
+  background-color: var(--terciary);
+
+  background-image: linear-gradient(45deg, black, #333);
+
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 3;
+}
+
+.header-navigation .wrapper {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-navigation nav ul {
+  list-style: none;
+  display: flex;
+}
+
+.header-navigation nav ul li{
+  margin-left: 1em;
+}
+
+.header-navigation a {
+  color: white;
+}
+
+main {
+  min-height: 200vh;
+  background-color: var(--secondary);
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+
+  position: relative;
+}
+
+.balls {
+  min-height: 50vh;
+}
+
+.ball1 {
+  top: 37vw !important;
+  left: 12vw !important;
+  width: 100% !important;
+  max-width: 50vh !important;
+  position: absolute !important;
+}
+
+.ball2 {
+  top: 37vw !important;
+  left: 52vw !important;
+  width: 50% !important;
+  position: absolute !important;
+}
+
+.ball3 {
+  top: 47vw !important;
+  right: 12vw !important;
+  width: 10% !important;
+  position: absolute !important;
+}
+
+.ball img {
+  width: 100%;
+  height: auto;
+}
+
+.world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+
+.world h1 {
+  font-size: 4em;
+}
