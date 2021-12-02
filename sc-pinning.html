@@ -22,9 +22,9 @@
 
     <section class="demo">
       <h1>&</h1>
-      <h2>why</h2>
-      <h3>boh</h3>
-      <h4>loh</h4>
+      <h2>master</h2>
+      <h3>of</h3>
+      <h4>disaster</h4>
     </section>
 
     <section class="next">
@@ -43,14 +43,14 @@
       start:"top 25%",
       end:"+=100",
       toggleActions:"restart none none reverse",
-      markers:true,
+      // markers:true,
       scrub: false
     }})
 
-    .from(".demo h1", {y:50})
-    .from(".demo h2", {y:100}, 0)
-    .from(".demo h3", {y:150}, 0)
-    .from(".demo h4", {y:200}, 0)
+    .from(".demo h1", {y:20, opacity:0, duration:0.3})
+    .from(".demo h2", {y:40, opacity:0, duration:0.3}, 0)
+    .from(".demo h3", {y:60, opacity:0, duration:0.3}, 0)
+    .from(".demo h4", {y:80, opacity:0, duration:0.3}, 0)
 
   </script>
 </body>
