@@ -5,39 +5,106 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GSAP</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="scroll-trigger.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <h1>Hello</h1>
-  <ul>
-    <li>Lorem.</li>
-    <li>Beatae?</li>
-    <li>Tempore.</li>
-    <li>Maxime!</li>
-    <li>Nihil?</li>
-  </ul>
-  <h2>bye</h2>
+  <main class="bar-container">
+    <h1>Hello</h1>
+    <div class="bar"></div>
+  </main>
+
+  <section>
+    <div class="icon-wrapper">
+      <a href="#" class="icon bond">
+        <svg class="logo-icon" fill="white" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="AccessibilityIcon">
+          <path d="m9.4 10.5 4.77-8.26C13.47 2.09 12.75 2 12 2c-2.4 0-4.6.85-6.32 2.25l3.66 6.35.06-.1zM21.54 9c-.92-2.92-3.15-5.26-6-6.34L11.88 9h9.66zm.26 1h-7.49l.29.5 4.76 8.25C21 16.97 22 14.61 22 12c0-.69-.07-1.35-.2-2zM8.54 12l-3.9-6.75C3.01 7.03 2 9.39 2 12c0 .69.07 1.35.2 2h7.49l-1.15-2zm-6.08 3c.92 2.92 3.15 5.26 6 6.34L12.12 15H2.46zm11.27 0-3.9 6.76c.7.15 1.42.24 2.17.24 2.4 0 4.6-.85 6.32-2.25l-3.66-6.35-.93 1.6z"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="text">Good Job!</p>
+  </footer>
+
+  <header>
+    <a href="#" class="icon herman">
+      <svg class="logo-icon" fill="white" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="AccessibilityIcon">
+        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"></path>
+      </svg>
+    </a>
+  </header>
+
 
   <script>
-    gsap.to("h1", {x:400, duration: 10});
-    // object.to("selector", {vars}
-    // .to .from .fromTo
-    // default duration 400ms
+    gsap.registerPlugin(ScrollTrigger)
+    // ANIMATION
+    gsap.from(".herman", {
+      duration: 3, x:"50vw", scale:2, rotation:-360, ease:"linear",
+        scrollTrigger:{
+          trigger: "header",
+          // markers: true,
+          start:"top 50%",
+          end:"bottom 50%",
+          scrub:true,
+          // onEnter onLeave onEnterBack onLeaveBack
+          toggleActions: "restart pause reverse reset"
+          // options: play, pause, resume, reset, restart, complete, reverse, none
+        }
+    })
+    // TIMELINE, SCRUB, PIN
+    let tl = gsap.timeline({scrollTrigger:{
+      trigger: ".icon-wrapper",
+      start: "top 50%",
+      end: "bottom 50%",
+      // markers: true,
+      scrub: .5,
+      pin: false
+    }})
+    .to(".bond", { duration: 1, rotation: 360, scale:3, ease:"linear" })
 
-    gsap.to("li", {stagger:1, x:400, duration: 10});
 
-    // delay: how much time should transpire before animation begins
-    // repeat: how many times the animation should repeat
-    // yoyo: when set to true the animation will play back and forth
-    // repeatDelay: how much time should transpire between each repeat
-    gsap.to("h2", {x: 200, repeat: -1, yoyo: true})
+    // PINNING, pinSpace
+    const animation = gsap.timeline();
+    function init() {
+      console.log('init')
+      animation
+        .to(".text", { duration: 1,  scale:2, ease:"linear" })
 
-    // easing
-    // https://greensock.com/docs/v3/Eases?ref=6234
+      ScrollTrigger.create({
+        trigger:".text",
+        animation: animation,
+        start:"top 60%",
+        end:"top 40%",
+        scrub: 1,
+        // markers: true,
+        pin:false,
+        pinSpacing: false
+      })
+    }
+    window.addEventListener("load", init);
+    // ANIMATION BAR
+    const animationBar = gsap.timeline();
+    function initBar() {
+      animationBar
+        .from(".bar", { duration: 1,  scale:0, ease:"linear" })
 
+      ScrollTrigger.create({
+        trigger:"section",
+        animation: animationBar,
+        start:"top 100%",
+        end:"top 50%",
+        // markers: true,
+        scrub: true
+      })
+    }
+    window.addEventListener("load", initBar);
   </script>
-
 </body>
 </html>
