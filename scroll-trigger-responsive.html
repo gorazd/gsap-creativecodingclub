@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="scroll-trigger-responsive.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+</head>
+<body class="">
+
+  <div class="scrollContainer">
+
+    <footer>
+      <p class="text">Scroll down please</p>
+    </footer>
+
+    <section class="item-grid">
+
+      <article class="item-article">
+        <div class="item image-container">
+          <div class="fake-image"></div>
+        </div>
+        <div class="item text-container">
+          <h2>Test title</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ipsa minima doloremque hic quos assumenda fuga, nobis modi perferendis. Nam, exercitationem accusantium? Temporibus blanditiis necessitatibus reprehenderit iste, corrupti libero natus.</p>
+        </div>
+      </article>
+
+      <article class="item-article">
+        <div class="item image-container">
+          <div class="fake-image"></div>
+        </div>
+        <div class="item text-container">
+          <h2>Test title</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ipsa minima doloremque hic quos assumenda fuga, nobis modi perferendis. Nam, exercitationem accusantium? Temporibus blanditiis necessitatibus reprehenderit iste, corrupti libero natus.</p>
+        </div>
+      </article>
+
+      <article class="item-article">
+        <div class="item image-container">
+          <div class="fake-image"></div>
+        </div>
+        <div class="item text-container">
+          <h2>Test title</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ipsa minima doloremque hic quos assumenda fuga, nobis modi perferendis. Nam, exercitationem accusantium? Temporibus blanditiis necessitatibus reprehenderit iste, corrupti libero natus.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      <p class="text">Good Job!</p>
+    </footer>
+
+  </div>
+
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger)
+    // gsap.defaults({ease:"none"})
+
+    const articles = gsap.utils.toArray(".item-article");
+
+    articles.forEach((element, index) => {
+      let items =  element.querySelectorAll(".item");
+      let distance = (index % 2 == 0) ? 100 : -100
+      let tl = gsap.timeline({
+        scrollTrigger:{
+          trigger:element,
+          start:"top 80%",
+          toggleActions:"play none none reverse",
+          markers: true
+        }
+      })
+      .from(items, {xPercent:gsap.utils.wrap([distance,-distance]), duration:1})
+    });
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="scroll-trigger-locomotive.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+</head>
+<body>
+
+  <div class="scrollContainer">
+
+    <footer>
+      <p class="text">Scroll down please</p>
+    </footer>
+
+    <section class="">
+
+    </section>
+
+    <footer>
+      <p class="text">Good Job!</p>
+    </footer>
+
+  </div>
+
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger)
+    gsap.defaults({ease:"none"})
+
+    const locoScroll = new LocomotiveScroll({
+      el: document.querySelector(".scrollContainer"),
+      smooth: true
+    })
+
+    //ScrollTrigger animations don't work while using Locomotive
+    // you need to use .scrollerProxy()
+    // https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.scrollerProxy()
+  </script>
+</body>
+</html>
